@@ -1,0 +1,22 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Workspace Metadata #
+.metadata/
+
+# Eclipse Settings #
+/Core/.settings/
+/Core/.classpath
+/Core/.project
+
+# Tomcat Server #
+/Servers
+/Servers/
+
+# Compiled Sources #
+Core/bin/
+Core/target/

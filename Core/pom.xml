@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+	<modelVersion>4.0.0</modelVersion>
+	
+	<!-- DADOS -->
+	<groupId>br.com.sourcesphere</groupId>
+	<artifactId>${project.name}</artifactId>
+	<packaging>jar</packaging>
+	<version>${br.com.sourcesphere.core.version}</version>
+	
+	<!-- NOME -->
+	<name>${project.name}</name>
+	<url>https://github.com/SourceSphere/${project.name}</url>
+	
+	<!-- PROPRIEDADES -->
+	<properties>
+	
+		<!-- NOME DO PROJETO -->
+		<project.name>Core</project.name>
+	
+		<!-- VERSÃO DO PROJETO -->
+		<br.com.sourcesphere.core.version>0.0.1.DEV</br.com.sourcesphere.core.version>
+		
+	    <!-- VERSÃO DO SPRING -->
+	    <org.springframework.version>3.2.0.RELEASE</org.springframework.version>
+	    
+	    <!-- VERSÃO DO HIBERNATE -->
+	    <org.hibernate.version>4.1.9.Final</org.hibernate.version>
+	    
+	    <!-- NOME COMPILADO -->
+	    <project.build.finalname>${project.name}-${br.com.sourcesphere.core.version}</project.build.finalname>
+	
+	</properties>
+	
+	<!-- MAVEN PLUGINS -->
+	<build>
+		<finalName>${project.build.finalname}</finalName>
+		<defaultGoal>install</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<wtpversion>2.0</wtpversion>
+				</configuration>
+			</plugin>
+		</plugins>
+		<testResources>
+	        <testResource>
+	            <directory>src/test/resources</directory>
+	            <filtering>true</filtering>
+	        </testResource>
+	    </testResources>
+	</build>
+	
+	<!-- DEPENDÊNCIAS -->
+	<dependencies>
+		
+		<!-- HIBERNATE CORE -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${org.hibernate.version}</version>
+		</dependency>
+		
+		<!-- LOG4J -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		
+		<!-- JUNIT -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- REFLECTION -->
+		<dependency>
+			<groupId>net.vidageek</groupId>
+			<artifactId>mirror</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+
+	</dependencies>
+	
+</project>
