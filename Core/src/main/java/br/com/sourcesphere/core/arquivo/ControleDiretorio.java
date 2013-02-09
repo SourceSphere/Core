@@ -9,6 +9,14 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Responsável por gerenciar arquivos de um diretório,
+ * com funcções como executar o upload de um arquivo,
+ * deletar um arquivo ou listar os arquivos de um diretório.
+ * @author Guilherme Dio
+ * @since 1.0
+ *
+ */
 public class ControleDiretorio 
 {
 	private File diretorio;
@@ -20,6 +28,7 @@ public class ControleDiretorio
 			this.diretorio = new File(diretorio + "\\");
 	}
 		
+	@SuppressWarnings("resource")
 	public void uploadArquivo(File arquivoCliente)
     {
 		File arquivoServidor = new File(diretorio+"\\"+arquivoCliente.getName());

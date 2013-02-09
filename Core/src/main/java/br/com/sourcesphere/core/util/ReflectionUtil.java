@@ -90,6 +90,11 @@ public final class ReflectionUtil
 		return new Mirror().on(instance.getObjeto()).get().field(campo);
 	}
 	
+	public final void setValue(Field campo,Object valor)
+	{
+		new Mirror().on(instance.getObjeto()).set().field(campo).withValue(valor);
+	}
+	
 	
 	/**
 	 * Recupera o nome simplificado da classe informada no {@link #getInstance(Class, Object)}

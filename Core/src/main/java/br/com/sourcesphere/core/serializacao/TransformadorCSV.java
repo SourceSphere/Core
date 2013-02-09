@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import br.com.sourcesphere.core.util.ReflectionUtil;
 
 /**
  * Classe que implementa a transformação de um arquivo CSV para um objeto Java.<br>
@@ -38,9 +41,6 @@ public final class TransformadorCSV extends Transformador
 	@Override
 	public List<Object> transforma(Class<?> classe, File arquivo) throws InstantiationException, IllegalAccessException, FileNotFoundException
 	{	
-		//Classe para setar dados
-		CampoSetter setter = new CampoSetter();
-		
 		//Leitura do CSV
 		LeitorCSV leitor = new LeitorCSV(arquivo, ";");
 		List<String> header = leitor.getHeader();
@@ -50,13 +50,17 @@ public final class TransformadorCSV extends Transformador
 		List<Object> objetos = new ArrayList<Object>();
 		
 		//Recupera os campos da classe
-		List<Field> campos = new CampoGetter().getFields(classe);
+		List<Field> campos = ReflectionUtil.getInstance(classe, null).getFields();
 		
 		//Montagem dos objetos
 		for(Object linha : valores)
 		{
+			//Valores da linha
+			List<String> valoresLinha = Arrays.asList(linha.toString().split(";"));
+			
 			//Nova instância da classe
 			Object objeto = classe.newInstance();
+			
 			for(int i = 0;i < header.size();i++) 
 			{
 				//Varre os campos
@@ -65,11 +69,11 @@ public final class TransformadorCSV extends Transformador
 					//Carrega os campos
 					if(header.get(i).toLowerCase().equals(campoClasse.getName().toLowerCase()))
 					{
-						setter.setFieldValue(objeto, campoClasse, linha.toString().split(";")[i]);
+						ReflectionUtil.getInstance(classe, objeto).setValue(campoClasse, valoresLinha.get(i));
 					}
 				}
 			}
-			//Adiciona na List
+			//Adiciona na Lista de objetos
 			objetos.add(objeto);
 		}
 		

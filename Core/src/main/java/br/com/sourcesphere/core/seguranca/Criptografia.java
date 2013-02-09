@@ -4,6 +4,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import org.apache.log4j.Logger;
+
+/**
+ * Classe responsável por criptografar dados
+ * @author Guilherme Dio
+ * @since 1.0
+ */
 public class Criptografia 
 {
 	private static TipoAlgoritmo tipo;
@@ -12,6 +18,10 @@ public class Criptografia
 	
 	private static Logger log = Logger.getLogger(Criptografia.class.getName());
 	
+	/**
+	 * Inicializa o sistema de criptografia
+	 * @param tipo - {@link TipoAlgoritmo} a ser usado(Ex: MD5, SHA, ...)
+	 */
 	public static void iniciar(TipoAlgoritmo tipo)
 	{
 		log.info("Iniciando encriptador");
@@ -28,6 +38,11 @@ public class Criptografia
 		}
 	}
 	
+	/**
+	 * Executa a limpeza do sistema de criptografia,
+	 * portanto será necessário inicia-lo novamente
+	 * utilizando o método {@link #iniciar(TipoAlgoritmo)}
+	 */
 	public static void limpar()
 	{
 		tipo = null;
@@ -35,6 +50,10 @@ public class Criptografia
 		log.info("O encriptador foi limpo");
 	}
 	
+	/**
+	 * Define o tipo de algoritmo a ser usado
+	 * @param tipo - {@link TipoAlgoritmo} a ser usado(Ex: MD5, SHA, ...)
+	 */
 	private static void setTipo(TipoAlgoritmo tipo) 
 	{
 		if(tipo == null)
@@ -43,6 +62,11 @@ public class Criptografia
 		log.info("Estabelecido o algoritmo '"+tipo.algoritmo().toUpperCase()+"' para a criptografia");
 	}
 
+	/**
+	 * Gera um valor criptografado a partir da String informada como parametro
+	 * @param valor - Valor para ser criptografado
+	 * @return Valor Criptografado
+	 */
 	public static String gerarHash(String valor)
 	{
 		log.info("Iniciando a encriptaï¿½ï¿½o do valor '"+valor+"' utilizando o algoritmo '"+tipo.algoritmo()+"'");

@@ -6,8 +6,8 @@ import java.text.NumberFormat;
 import javax.persistence.Embeddable;
 
 /**
- * Classe no padrï¿½o singleton que implementa cï¿½lculos de porcentagem sobre um valor
- * <p>Para obter um instï¿½ncia, utilize o mï¿½todo {@link #getInstance(Long)}
+ * Classe no padrão singleton que implementa cálculos de porcentagem sobre um valor
+ * <p>Para obter um instância, utilize o mï¿½todo {@link #getInstance(Long)}
  * @author Guilherme Dio
  * @since 1.0
  */
@@ -23,7 +23,7 @@ public class Porcentagem
 	private Porcentagem() {}
 	
 	/**
-	 * Mï¿½todo que retorna uma instancia da classe
+	 * Método que retorna uma instancia da classe
 	 * @param valorPorCento Valor por cento a ser utilizado. Exemplos:
 	 *                      <p>Ex: Para 10%, informe 10.
 	 *                      <p>Ex: Para 50%, informe 50.
@@ -39,7 +39,7 @@ public class Porcentagem
 	}
 	
 	/**
-	 * Mï¿½todo para atribuir o valor percentual
+	 * Método para atribuir o valor percentual
 	 * @param valorPorCento Valor por cento a ser utilizado. Exemplos:
 	 *                      <p>Ex: Para 10%, informe 10
 	 *                      <p>Ex: Para 50%, informe 50
@@ -54,7 +54,7 @@ public class Porcentagem
 	}
 	
 	/**
-	 * Get do percentual nï¿½merico
+	 * Get do percentual numérico
 	 * @return Valor percentual
 	 *         <p> Ex: 0.5
 	 */
@@ -64,7 +64,7 @@ public class Porcentagem
 	}
 	
 	/**
-	 * Mï¿½todo para retornar o percentual formatado em uma String
+	 * Método para retornar o percentual formatado em uma String
 	 * @return Uma String contendo o valor percentual formatado
 	 *         <p> Ex: 50%
 	 */

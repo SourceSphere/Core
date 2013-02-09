@@ -4,7 +4,7 @@
 	
 	<!-- DADOS -->
 	<groupId>br.com.sourcesphere</groupId>
-	<artifactId>${project.name}</artifactId>
+	<artifactId>core</artifactId>
 	<packaging>jar</packaging>
 	<version>${br.com.sourcesphere.core.version}</version>
 	
