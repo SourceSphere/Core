@@ -54,6 +54,12 @@
 					<wtpversion>2.0</wtpversion>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
 		</plugins>
 		<testResources>
 	        <testResource>

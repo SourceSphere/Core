@@ -11,7 +11,7 @@ import java.util.Set;
  * @autor Marco Noronha
  * @since 1.0
  */
-public class ToStringUtil 
+public class ToStringUtil implements Ignoravel<String>
 {
 	private static ToStringUtil instance;
 	
@@ -20,17 +20,17 @@ public class ToStringUtil
 	private ToStringUtil()
 	{}
 	
-	private ToStringUtil(Set<String> ignorados)
+	private ToStringUtil(List<String> ignorados)
 	{
 		this.addAllCamposIgnorados(ignorados);
 	}
 	
 	public static ToStringUtil getInstance()
 	{
-		return getInstance(new HashSet<String>());
+		return getInstance(null);
 	}
 	
-	public static ToStringUtil getInstance(Set<String> ignorados)
+	public static ToStringUtil getInstance(List<String> ignorados)
 	{
 		if(instance == null)
 			instance = new ToStringUtil(ignorados);
@@ -42,7 +42,7 @@ public class ToStringUtil
 		return instance;
 	}
 	
-	public void addAllCamposIgnorados(Set<String> ignorados)
+	public void addAllCamposIgnorados(List<String> ignorados)
 	{
 		for(String ignorado : ignorados)
 			this.addCampoIgnorado(ignorado);
@@ -53,7 +53,7 @@ public class ToStringUtil
 		this.ignorados.add(ignorado);
 	}
 
-	private void clear()
+	public void clear()
 	{
 		this.ignorados.clear();
 	}
@@ -65,9 +65,9 @@ public class ToStringUtil
 		StringBuilder sb = new StringBuilder(reflection.getClassName()+":\r\n{");
 		for(Field campo : campos)
 		{
-			if(!isIgnorado(campo))
+			if(!isIgnorado(campo.getName()))
 			{
-				String valor = reflection.getValue(campo).toString();
+				String valor = String.valueOf(reflection.getValue(campo));
 				sb.append("\r\n"+campo.getName()+": "+valor);
 			}
 		}
@@ -83,9 +83,9 @@ public class ToStringUtil
 		return sb.toString();
 	}
 	
-	private boolean isIgnorado(Field campo)
+	public Boolean isIgnorado(String campo)
 	{
-		if(ignorados.contains(campo.getName()))
+		if(ignorados.contains(campo))
 			return true;
 		return false;
 	}
