@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Classe que encapsula toda a serialização.
+ * Classe que encapsula toda a serializaï¿½ï¿½o.
  * @author Guilherme Dio
  *
  */
@@ -30,36 +30,54 @@ public final class Serializador
 	public Object serializa(File arquivo)
 	{
 		if(arquivo == null) throw new IllegalArgumentException("O arquivo informado esta nulo !");
-		if(classe == null) throw new IllegalArgumentException("A classe para serialização não foi informada !");
+		if(classe == null) throw new IllegalArgumentException("A classe para serializaï¿½ï¿½o nï¿½o foi informada !");
 		try
 		{
 			return this.transformador.transforma(this.classe, arquivo);
 		}
 		catch(IllegalAccessException e)
 		{
-			throw new SerializacaoException("O Arquivo está com acesso negado !");
+			throw new SerializacaoException("O Arquivo estï¿½ com acesso negado !");
 		}
 		catch(InstantiationException e)
 		{
-			throw new SerializacaoException("A classe informada é inválida !");
+			throw new SerializacaoException("A classe informada ï¿½ invï¿½lida !");
 		}
 		catch(FileNotFoundException e)
 		{
-			throw new SerializacaoException("O arquivo não existe !");
+			throw new SerializacaoException("O arquivo nï¿½o existe !");
 		}
 		catch(IllegalStateException e)
 		{
-			throw new SerializacaoException("O arquivo esta em formato inválido !");
+			throw new SerializacaoException("O arquivo esta em formato invï¿½lido !");
 		}
 	}
 	
 	/**
-	 * Set da classe a qual deverá ser utilizada na serialização
+	 * Deserializa o objeto para uma String utilizando o transformador parametrizado
+	 * @param objeto - Instancia a ser deserializada
+	 * @return Objeto deserializado
+	 */
+	public String deserializa(Object objeto)
+	{
+		if(objeto == null) throw new IllegalArgumentException("O objeto nÃ£o pode ser nulo !");
+		try
+		{
+			return this.transformador.retransforma(objeto);
+		} 
+		catch(InstantiationException e)
+		{
+			throw new SerializacaoException("A classe informada Ã© invÃ¡lida !");
+		}
+	}
+	
+	/**
+	 * Set da classe a qual deverÃ¡ ser utilizada na serializaÃ§Ã£o
 	 * @param classe
 	 */
 	public void setClasse(Class<?> classe)
 	{
-		if(classe == null) throw new IllegalArgumentException("A classe para serialização não foi informada !");
+		if(classe == null) throw new IllegalArgumentException("A classe para serializaï¿½ï¿½o nï¿½o foi informada !");
 		this.classe = classe;
 	}
 	

@@ -13,6 +13,11 @@ public class EqualsUtilTest
 	{
 		return new EqualsUtil(objetoPrincipal);
 	}
+	
+	private EqualsUtil init(EstrategiaEquals estrategia ,Object objetoPrincipal) 
+	{
+		return new EqualsUtil(estrategia, objetoPrincipal);
+	}
 
 	@Test
 	public void testIsEqualsComClassesSimplesIguais() 
@@ -110,8 +115,7 @@ public class EqualsUtilTest
 		A.id = 5;
 		B.id = 10;
 		
-		EqualsUtil util = init(A);
-		util.addCampoIgnorado("id");
+		EqualsUtil util = init(new IgnoraveisEstrategiaEquals("id"), A);
 		
 		assertEquals(true, util.isEquals(B));
 	}
@@ -124,7 +128,7 @@ public class EqualsUtilTest
 		A.id = 5;
 		B.id = 10;
 		
-		EqualsUtil util = init(A);
+		EqualsUtil util = init(new ObrigatoriosEstrategiaEquals("id"), A);
 		
 		assertEquals(false, util.isEquals(B));
 	}

@@ -6,6 +6,7 @@ package br.com.sourcesphere.core.util;
  * @author Guilherme Dio
  * @since 1.0
  */
+@Deprecated
 public class CloneUtil
 {
 	//Implementar

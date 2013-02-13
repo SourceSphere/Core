@@ -1,9 +1,7 @@
 package br.com.sourcesphere.core.util;
 
 import java.lang.reflect.Field;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Classe para imprimir(toString) objetos din�micamente por reflection
@@ -11,51 +9,30 @@ import java.util.Set;
  * @autor Marco Noronha
  * @since 1.0
  */
-public class ToStringUtil implements Ignoravel<String>
+public class ToStringUtil
 {
 	private static ToStringUtil instance;
 	
-	private Set<String> ignorados = new HashSet<String>();
+	private EstrategiaToString estrategia;
 	
-	private ToStringUtil()
-	{}
-	
-	private ToStringUtil(List<String> ignorados)
-	{
-		this.addAllCamposIgnorados(ignorados);
-	}
+	private ToStringUtil() {}
 	
 	public static ToStringUtil getInstance()
 	{
-		return getInstance(null);
+		return getInstance(new DefaultEstrategiaToString());
 	}
 	
-	public static ToStringUtil getInstance(List<String> ignorados)
+	public static ToStringUtil getInstance(EstrategiaToString estrategia)
 	{
 		if(instance == null)
-			instance = new ToStringUtil(ignorados);
-		else
-		{
-			instance.clear();
-			instance.addAllCamposIgnorados(ignorados);
-		}
+			instance = new ToStringUtil();
+		instance.setEstrategia(estrategia);
 		return instance;
 	}
 	
-	public void addAllCamposIgnorados(List<String> ignorados)
+	private void setEstrategia(EstrategiaToString estrategia)
 	{
-		for(String ignorado : ignorados)
-			this.addCampoIgnorado(ignorado);
-	}
-	
-	public void addCampoIgnorado(String ignorado)
-	{
-		this.ignorados.add(ignorado);
-	}
-
-	public void clear()
-	{
-		this.ignorados.clear();
+		this.estrategia = estrategia;
 	}
 	
 	public String toString(Object objeto)
@@ -65,7 +42,7 @@ public class ToStringUtil implements Ignoravel<String>
 		StringBuilder sb = new StringBuilder(reflection.getClassName()+":\r\n{");
 		for(Field campo : campos)
 		{
-			if(!isIgnorado(campo.getName()))
+			if(estrategia.verifica(campo))
 			{
 				String valor = String.valueOf(reflection.getValue(campo));
 				sb.append("\r\n"+campo.getName()+": "+valor);
@@ -81,12 +58,5 @@ public class ToStringUtil implements Ignoravel<String>
 		for(Object objeto : objetos)
 			sb.append(this.toString(objeto));
 		return sb.toString();
-	}
-	
-	public Boolean isIgnorado(String campo)
-	{
-		if(ignorados.contains(campo))
-			return true;
-		return false;
 	}
 }

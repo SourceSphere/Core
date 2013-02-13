@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.log4j.Logger;
 
 /**
- * Classe respons�vel por criptografar dados
+ * Classe respons�vel por criptografar dados
  * @author Guilherme Dio
  * @since 1.0
  */
@@ -32,7 +32,7 @@ public class Criptografia
 		}
 		catch(NoSuchAlgorithmException e)
 		{
-			log.warn("O algoritmo "+tipo.algoritmo()+" n�o esta dispon�vel ou  n�o existe...reiniciando com o algoritmo padr�o "+tipoPadrao.algoritmo(), e);
+			log.warn("O algoritmo "+tipo.algoritmo()+" não esta disponível ou não existe...reiniciando com o algoritmo padrão - "+tipoPadrao.algoritmo(), e);
 			limpar();
 			iniciar(tipoPadrao);
 		}
@@ -40,8 +40,8 @@ public class Criptografia
 	
 	/**
 	 * Executa a limpeza do sistema de criptografia,
-	 * portanto ser� necess�rio inicia-lo novamente
-	 * utilizando o m�todo {@link #iniciar(TipoAlgoritmo)}
+	 * portanto ser� necess�rio inicia-lo novamente
+	 * utilizando o m�todo {@link #iniciar(TipoAlgoritmo)}
 	 */
 	public static void limpar()
 	{
@@ -57,7 +57,7 @@ public class Criptografia
 	private static void setTipo(TipoAlgoritmo tipo) 
 	{
 		if(tipo == null)
-			throw new NullPointerException("O Tipo de Encripta��o esta nulo");
+			throw new NullPointerException("O Tipo de encriptação esta nulo");
 		Criptografia.tipo = tipo;
 		log.info("Estabelecido o algoritmo '"+tipo.algoritmo().toUpperCase()+"' para a criptografia");
 	}
@@ -69,10 +69,10 @@ public class Criptografia
 	 */
 	public static String gerarHash(String valor)
 	{
-		log.info("Iniciando a encripta��o do valor '"+valor+"' utilizando o algoritmo '"+tipo.algoritmo()+"'");
+		log.info("Iniciando a encriptação do valor '"+valor+"' utilizando o algoritmo '"+tipo.algoritmo()+"'");
 		if(digest == null)
 		{
-			String msg = "O Digest de criptografia n�o foi iniciado. Utilize o m�todo iniciar(TipoAlgoritmo)";
+			String msg = "O Digest de criptografia não foi iniciado. Utilize o método iniciar(TipoAlgoritmo)";
 			log.warn(msg);
 			throw new IllegalStateException(msg);
 		}

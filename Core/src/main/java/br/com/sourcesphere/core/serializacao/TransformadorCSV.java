@@ -10,9 +10,9 @@ import java.util.List;
 import br.com.sourcesphere.core.util.ReflectionUtil;
 
 /**
- * Classe que implementa a transformação de um arquivo CSV para um objeto Java.<br>
- * O Arquivo não deve ser nulo e deve conter header com identificação igual aos atributos<br>
- * da classe ao qual será serializado.
+ * Classe que implementa a transformaï¿½ï¿½o de um arquivo CSV para um objeto Java.<br>
+ * O Arquivo nï¿½o deve ser nulo e deve conter header com identificaï¿½ï¿½o igual aos atributos<br>
+ * da classe ao qual serï¿½ serializado.
  * <br>
  * <hr>
  * Exemplo:<br>
@@ -58,7 +58,7 @@ public final class TransformadorCSV extends Transformador
 			//Valores da linha
 			List<String> valoresLinha = Arrays.asList(linha.toString().split(";"));
 			
-			//Nova instância da classe
+			//Nova instï¿½ncia da classe
 			Object objeto = classe.newInstance();
 			
 			for(int i = 0;i < header.size();i++) 
@@ -79,5 +79,12 @@ public final class TransformadorCSV extends Transformador
 		
 		//Retorna os objetos montados
 		return objetos;
+	}
+	
+	@Override
+	@Deprecated
+	public String retransforma(Object objeto) throws InstantiationException 
+	{
+		return "notYetImplemented";
 	}
 }

@@ -1,9 +1,7 @@
 package br.com.sourcesphere.core.util;
 
 import java.lang.reflect.Field;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -11,7 +9,7 @@ import java.util.Set;
  * @author Guilherme Dio
  * @since 1.0
  */
-public class EqualsUtil implements Ignoravel<String>
+public final class EqualsUtil
 {	
 	/**
 	 * Objeto principal utilizado na comparação
@@ -19,17 +17,28 @@ public class EqualsUtil implements Ignoravel<String>
 	private final Object objeto;
 	
 	/**
-	 * Set com os campos ignorados
+	 * Estrat�gia de valida��o
 	 */
-	private Set<String> ignorados = new HashSet<String>();
+	private final EstrategiaEquals estrategia;
 	
 	/**
-	 * Inicializa o EqualsUtil
+	 * Inicializa o EqualsUtil com estrategia default(valida��o total)
 	 * @param objetoPrincipal - Objeto utilizado para comparar com outros
 	 */
-	public EqualsUtil(Object objetoPrincipal)
+	public EqualsUtil(final Object objetoPrincipal)
+	{
+		this(new DefaultEstrategiaEquals(),objetoPrincipal);
+	}
+	
+	/**
+	 * Inicializa o EqualsUtil com uma estrategia de valida��o
+	 * @param estrategia - Estrategia de valida��o
+	 * @param objetoPrincipal - Objeto utilizado para comparar com outros
+	 */
+	public EqualsUtil(EstrategiaEquals estrategia,Object objetoPrincipal)
 	{
 		this.objeto = objetoPrincipal;
+		this.estrategia = estrategia;
 	}
 	
 	private Object getObjeto() 
@@ -58,8 +67,8 @@ public class EqualsUtil implements Ignoravel<String>
 			//Percorre todos os campos do objeto principal
 			for(Field campoObjetoPrincipal : camposObjetoPrincipal)
 			{
-				//Verifica se é um campo ignorado na verificação
-				if(!isIgnorado(campoObjetoPrincipal.getName()))
+				//Verifica se a estrategia permite a validação do campo
+				if(this.estrategia.verifica(campoObjetoPrincipal))
 				{
 					//Percorre todos os campos do objeto secundario
 					for(Field campoOutroObjeto : camposOutroObjeto)
@@ -114,30 +123,4 @@ public class EqualsUtil implements Ignoravel<String>
 	}
 	
 	
-	@Override
-	public void addAllCamposIgnorados(List<String> ignorados)
-	{
-		for(String ignorado : ignorados)
-			this.addCampoIgnorado(ignorado);
-	}
-	
-	@Override
-	public void addCampoIgnorado(String ignorado)
-	{
-		this.ignorados.add(ignorado);
-	}
-	
-	@Override
-	public Boolean isIgnorado(String campo)
-	{
-		if(ignorados.contains(campo))
-			return true;
-		return false;
-	}
-	
-	@Override
-	public void clear()
-	{
-		this.ignorados.clear();
-	}
 }
