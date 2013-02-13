@@ -19,7 +19,7 @@
 		<project.name>Core</project.name>
 	
 		<!-- VERSÃO DO PROJETO -->
-		<br.com.sourcesphere.core.version>0.0.1.DEV</br.com.sourcesphere.core.version>
+		<br.com.sourcesphere.core.version>1.0.0.RELEASE</br.com.sourcesphere.core.version>
 		
 	    <!-- VERSÃO DO SPRING -->
 	    <org.springframework.version>3.2.0.RELEASE</org.springframework.version>
