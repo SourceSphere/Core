@@ -17,22 +17,22 @@ public final class EqualsUtil
 	private final Object objeto;
 	
 	/**
-	 * Estrat�gia de valida��o
+	 * Estratagia de validacao
 	 */
 	private final EstrategiaEquals estrategia;
 	
 	/**
-	 * Inicializa o EqualsUtil com estrategia default(valida��o total)
+	 * Inicializa o EqualsUtil com estrategia default(validacao total)
 	 * @param objetoPrincipal - Objeto utilizado para comparar com outros
 	 */
-	public EqualsUtil(final Object objetoPrincipal)
+	public EqualsUtil(Object objetoPrincipal)
 	{
 		this(new DefaultEstrategiaEquals(),objetoPrincipal);
 	}
 	
 	/**
-	 * Inicializa o EqualsUtil com uma estrategia de valida��o
-	 * @param estrategia - Estrategia de valida��o
+	 * Inicializa o EqualsUtil com uma estrategia de validacao
+	 * @param estrategia - Estrategia de validacao
 	 * @param objetoPrincipal - Objeto utilizado para comparar com outros
 	 */
 	public EqualsUtil(EstrategiaEquals estrategia,Object objetoPrincipal)
@@ -57,7 +57,7 @@ public final class EqualsUtil
 		Class<?> clazzObjetoPrincipal = this.getObjeto().getClass();
 		Class<?> clazzOutroObjeto = outroObjeto.getClass();
 		
-		//Verifica se ambos s�o da mesma classe
+		//Verifica se ambos sao da mesma classe
 		if(clazzObjetoPrincipal.equals(clazzOutroObjeto))
 		{
 			//Campos dos objetos
@@ -73,7 +73,7 @@ public final class EqualsUtil
 					//Percorre todos os campos do objeto secundario
 					for(Field campoOutroObjeto : camposOutroObjeto)
 					{
-						//Verifica se o tipos dos campos s�o iguais
+						//Verifica se o tipos dos campos sao iguais
 						if(campoObjetoPrincipal.equals(campoOutroObjeto))
 						{
 							//Valores dos campos

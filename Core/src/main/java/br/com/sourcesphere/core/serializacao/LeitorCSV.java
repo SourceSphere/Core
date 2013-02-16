@@ -41,7 +41,7 @@ public final class LeitorCSV
 			return Arrays.asList(header);
 		}
 		scan.close();
-		throw new IllegalStateException("O arquivo não possuí um cabeçalho");
+		throw new IllegalStateException("O arquivo nao possui um cabecalho");
 	}
 	
 	/**
@@ -53,7 +53,7 @@ public final class LeitorCSV
 	{
 		List<Object> valores = new ArrayList<Object>();
 		Scanner scan = new Scanner(arquivo);
-		if(!scan.hasNextLine()) throw new IllegalStateException("O arquivo não possuí nenhuma linha de valres");
+		if(!scan.hasNextLine()) throw new IllegalStateException("O arquivo nao possui nenhuma linha de valres");
 		scan.nextLine();
 		while(scan.hasNextLine())
 		{

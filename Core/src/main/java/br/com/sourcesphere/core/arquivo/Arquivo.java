@@ -8,7 +8,7 @@ import java.util.Calendar;
  * @since 1.0
  *
  */
-public class Arquivo
+public final class Arquivo
 {
 	private String nome;
 	private String extensao;

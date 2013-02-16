@@ -1,7 +1,7 @@
 package br.com.sourcesphere.core.converter;
 
 /**
- * Classe para convers„o de objetos
+ * Classe para convers√£o de objetos
  * @author Guilherme Dio
  * @param <F> From(tipo original)
  * @param <T> To(tipo de destino)

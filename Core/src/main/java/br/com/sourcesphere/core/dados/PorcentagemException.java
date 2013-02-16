@@ -1,6 +1,11 @@
 package br.com.sourcesphere.core.dados;
 
-public class PorcentagemException extends RuntimeException 
+/**
+ * Excessões envolvendo a classe {@link Porcentagem}
+ * @author Guilherme Dio
+ *
+ */
+public final class PorcentagemException extends RuntimeException 
 {
 	private static final long serialVersionUID = 8183154189347439943L;
 	private String msg;

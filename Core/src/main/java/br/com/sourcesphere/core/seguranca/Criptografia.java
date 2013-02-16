@@ -6,11 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import org.apache.log4j.Logger;
 
 /**
- * Classe respons�vel por criptografar dados
+ * Classe responsável por criptografar dados
  * @author Guilherme Dio
  * @since 1.0
  */
-public class Criptografia 
+public final class Criptografia 
 {
 	private static TipoAlgoritmo tipo;
 	private static final TipoAlgoritmo tipoPadrao = TipoAlgoritmo.MD5;
@@ -40,8 +40,8 @@ public class Criptografia
 	
 	/**
 	 * Executa a limpeza do sistema de criptografia,
-	 * portanto ser� necess�rio inicia-lo novamente
-	 * utilizando o m�todo {@link #iniciar(TipoAlgoritmo)}
+	 * portanto será necessário inicia-lo novamente
+	 * utilizando o método {@link #iniciar(TipoAlgoritmo)}
 	 */
 	public static void limpar()
 	{

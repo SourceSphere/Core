@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
- * Interface para a implementa��o de um Transformador<br>
+ * Interface para a implementacao de um Transformador<br>
  * @see TransformadorCSV
  * @author Guilherme Dio
  *

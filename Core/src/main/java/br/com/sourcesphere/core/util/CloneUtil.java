@@ -7,7 +7,7 @@ package br.com.sourcesphere.core.util;
  * @since 1.0
  */
 @Deprecated
-public class CloneUtil
+public final class CloneUtil
 {
 	//Implementar
 }

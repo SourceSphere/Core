@@ -21,10 +21,11 @@ public final class ReflectionUtil
 	private ReflectionUtil() {}
 	
 	/**
-	 * M�todo que retorna uma instancia da classe
+	 * Metodo que retornar uma instancia unica da classe
 	 * @param clazz - Classe do objeto a ser utilizado
 	 * @param objeto - Instancia a ser utilizada
 	 * @return ReflectionUtil
+	 * @throws IllegalArgumentException - Se a classe e/ou o objeto forem invalidos,nulos.
 	 * @since 1.0
 	 */
 	public static ReflectionUtil getInstance(Class<?> clazz,Object objeto)
@@ -35,6 +36,11 @@ public final class ReflectionUtil
 		return instance;
 	}
 	
+	/**
+	 * Seta as dependencias
+	 * @param clazz
+	 * @param objeto
+	 */
 	private void setDependencias(Class<?> clazz,Object objeto)
 	{
 		setClazz(clazz);
@@ -48,6 +54,7 @@ public final class ReflectionUtil
 	
 	private void setClazz(Class<?> clazz)
 	{
+		if(clazz == null) throw new IllegalArgumentException("A classe '"+String.valueOf(clazz)+"' e invalida");
 		this.clazz = clazz;
 	}
 	
@@ -58,13 +65,14 @@ public final class ReflectionUtil
 	
 	private void setObjeto(Object objeto)
 	{
+		if(objeto == null) throw new IllegalArgumentException("O objeto '"+String.valueOf(objeto)+"' e invalido");
 		this.objeto = objeto;
 	}
 	
 	/**
-	 * Recupera um campo espec�fico a partir da classe informada no {@link #getInstance(Class, Object)}
-	 * @param nomeCampo Nome do campo necess�rio.
-	 * @return {@link Field}: Campo espec�fico da classe
+	 * Recupera um campo especifico a partir da classe informada no {@link #getInstance(Class, Object)}
+	 * @param nomeCampo Nome do campo necessario.
+	 * @return {@link Field}: Campo especifico da classe
 	 */
 	public final Field getField(String nomeCampo) 
 	{
@@ -82,7 +90,7 @@ public final class ReflectionUtil
 	
 	/**
 	 * Recupera valor de um campo do objeto informado no {@link #getInstance(Class, Object)}
-	 * @param campo Refer�ncia o campo que se deseja obter o valor.
+	 * @param campo Referencia o campo que se deseja obter o valor.
 	 * @return Valor do campo
 	 */
 	public final Object getValue(Field campo)
@@ -90,9 +98,40 @@ public final class ReflectionUtil
 		return new Mirror().on(instance.getObjeto()).get().field(campo);
 	}
 	
+	/**
+	 * Define um valor em um campo especifico da objeto informado no {@link #getInstance(Class, Object)}
+	 * @param campo - Referencia o campo que se deseja obter o valor.
+	 * @param valor - Um valor a ser atribuido
+	 */
 	public final void setValue(Field campo,Object valor)
 	{
-		new Mirror().on(instance.getObjeto()).set().field(campo).withValue(valor);
+		try
+		{
+			new Mirror().on(instance.getObjeto()).set().field(campo).withValue(valor);
+		}
+		catch(IllegalArgumentException e)
+		{
+			throw new IllegalArgumentException("O campo '"+String.valueOf(campo)+"' e invalido e/ou nao existe",e);
+		}
+	}
+	
+	/**
+	 * Invoca determinado metodo do objeto informado no {@link #getInstance(Class, Object)}
+	 * @param metodo - Metodo a ser invocado
+	 * @param args - {@link Parametro} contendo os args que o metodo necessita
+	 * @return O retorno do metodo invocado, ou null
+	 * @throws IllegalArgumentException - se o metodo for nulo
+	 */
+	public Object invocarMetodo(String metodo,Parametro<Object> args)
+	{
+		try
+		{
+			return new Mirror().on(instance.getObjeto()).invoke().method(metodo).withArgs(args.getParametros());
+		}
+		catch(IllegalArgumentException e)
+		{
+			throw new IllegalArgumentException("O metodo '"+String.valueOf(metodo)+"' e invalido e/ou nao existe",e);
+		}
 	}
 	
 	

@@ -6,15 +6,15 @@ import java.text.NumberFormat;
 import javax.persistence.Embeddable;
 
 /**
- * Classe no padrão singleton que implementa cálculos de porcentagem sobre um valor
- * <p>Para obter um instância, utilize o mï¿½todo {@link #getInstance(Long)}
+ * Classe no padrÃ£o singleton que implementa cÃ¡lculos de porcentagem sobre um valor
+ * <p>Para obter um instÃ¢ncia, utilize o mÃ©todo {@link #getInstance(Long)}
  * @author Guilherme Dio
  * @since 1.0
  */
 @Embeddable
-public class Porcentagem
+public final class Porcentagem
 {	
-	//Instï¿½ncia Singleton
+	//InstÃ¢ncia Singleton
 	private static Porcentagem instance;
 	
 	//Valor porcento
@@ -23,7 +23,7 @@ public class Porcentagem
 	private Porcentagem() {}
 	
 	/**
-	 * Método que retorna uma instancia da classe
+	 * MÃ©todo que retorna uma instancia singleton da classe
 	 * @param valorPorCento Valor por cento a ser utilizado. Exemplos:
 	 *                      <p>Ex: Para 10%, informe 10.
 	 *                      <p>Ex: Para 50%, informe 50.
@@ -39,7 +39,7 @@ public class Porcentagem
 	}
 	
 	/**
-	 * Método para atribuir o valor percentual
+	 * MÃ©todo para atribuir o valor percentual
 	 * @param valorPorCento Valor por cento a ser utilizado. Exemplos:
 	 *                      <p>Ex: Para 10%, informe 10
 	 *                      <p>Ex: Para 50%, informe 50
@@ -54,7 +54,7 @@ public class Porcentagem
 	}
 	
 	/**
-	 * Get do percentual numérico
+	 * Get do percentual numÃ©rico
 	 * @return Valor percentual
 	 *         <p> Ex: 0.5
 	 */
@@ -64,7 +64,7 @@ public class Porcentagem
 	}
 	
 	/**
-	 * Método para retornar o percentual formatado em uma String
+	 * MÃ©todo para retornar um percentual formatado em String
 	 * @return Uma String contendo o valor percentual formatado
 	 *         <p> Ex: 50%
 	 */
@@ -82,7 +82,7 @@ public class Porcentagem
 	 */
 	public BigDecimal aplicaAcrescimo(BigDecimal valor)
 	{
-		if(valor == null) throw new PorcentagemException("Impossï¿½vel aplicar acrescimo em um valor nulo");
+		if(valor == null) throw new PorcentagemException("Impossivel aplicar acrescimo em um valor nulo");
 		return valor.add(calculaPorcentagem(valor));
 	}
 	
@@ -93,12 +93,12 @@ public class Porcentagem
 	 */
 	public BigDecimal aplicaDecrescimo(BigDecimal valor)
 	{
-		if(valor == null) throw new PorcentagemException("Impossï¿½vel aplicar decrescimo em um valor nulo");
+		if(valor == null) throw new PorcentagemException("Impossivel aplicar decrescimo em um valor nulo");
 		return valor.subtract(calculaPorcentagem(valor));
 	}
 	
 	/**
-	 * Calcula o valor percentual do parametro a partir da porcentagem atribuï¿½da no mï¿½todo {@link #getInstance(Long)}
+	 * Calcula o valor percentual do parametro a partir da porcentagem atribuÃ­da no mÃ©todo {@link #getInstance(Long)}
 	 * @param valor - Parametro contendo o valor para o calculo.
 	 * @return Um BigDecimal contendo o percentual do valor.
 	 */

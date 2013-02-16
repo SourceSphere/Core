@@ -11,7 +11,13 @@ import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 
-public class DatabaseManager<T> 
+/**
+ * Implementação de um gerenciador de contextos JPA
+ * @author Guilherme Dio
+ *
+ * @param <T> - Tipo da classe
+ */
+public final class DatabaseManager<T> 
 {
 	private static Logger log = Logger.getLogger(DatabaseManager.class);
     private static EntityManagerFactory managerFactory;
@@ -19,7 +25,12 @@ public class DatabaseManager<T>
     private static EntityManager manager;
     private static EntityTransaction transaction;
     private static PersistenceUnit unit;
-
+    
+    /**
+     * Retorna um entity manager a partir da persistence unit
+     * <p>Deve conter o id 'main' ou 'test' no persistence.xml
+     * @param unit
+     */
     public static void init(PersistenceUnit unit) 
     {
     	setUnit(unit);

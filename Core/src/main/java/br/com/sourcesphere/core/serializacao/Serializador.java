@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /**
- * Classe que encapsula toda a serializa��o.
+ * Classe que encapsula toda a serializacao.
  * @author Guilherme Dio
  *
  */
@@ -30,26 +30,26 @@ public final class Serializador
 	public Object serializa(File arquivo)
 	{
 		if(arquivo == null) throw new IllegalArgumentException("O arquivo informado esta nulo !");
-		if(classe == null) throw new IllegalArgumentException("A classe para serializa��o n�o foi informada !");
+		if(classe == null) throw new IllegalArgumentException("A classe para serializacao nao foi informada !");
 		try
 		{
 			return this.transformador.transforma(this.classe, arquivo);
 		}
 		catch(IllegalAccessException e)
 		{
-			throw new SerializacaoException("O Arquivo est� com acesso negado !");
+			throw new SerializacaoException("O Arquivo esta com acesso negado !");
 		}
 		catch(InstantiationException e)
 		{
-			throw new SerializacaoException("A classe informada � inv�lida !");
+			throw new SerializacaoException("A classe informada e invalida !");
 		}
 		catch(FileNotFoundException e)
 		{
-			throw new SerializacaoException("O arquivo n�o existe !");
+			throw new SerializacaoException("O arquivo nao existe !");
 		}
 		catch(IllegalStateException e)
 		{
-			throw new SerializacaoException("O arquivo esta em formato inv�lido !");
+			throw new SerializacaoException("O arquivo esta em formato invalido !");
 		}
 	}
 	
@@ -77,7 +77,7 @@ public final class Serializador
 	 */
 	public void setClasse(Class<?> classe)
 	{
-		if(classe == null) throw new IllegalArgumentException("A classe para serializa��o n�o foi informada !");
+		if(classe == null) throw new IllegalArgumentException("A classe para serializacao nao foi informada !");
 		this.classe = classe;
 	}
 	

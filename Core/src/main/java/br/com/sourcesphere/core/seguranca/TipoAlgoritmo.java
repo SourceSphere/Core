@@ -1,5 +1,10 @@
 package br.com.sourcesphere.core.seguranca;
 
+/**
+ * ENUM com tipos de altoritmos para uso com a classe {@link Criptografia}
+ * @author Guilherme Dio
+ *
+ */
 public enum TipoAlgoritmo 
 {	
 	MD2("MD2"),
