@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Classe para imprimir(toString) objetos dinamicamente por reflection
  * @author Guilherme Dio
- * @autor Marco Noronha
+ * @author Marco Noronha
  * @since 1.0
  */
 public final class ToStringUtil

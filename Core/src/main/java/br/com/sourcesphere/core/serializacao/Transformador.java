@@ -23,7 +23,7 @@ public abstract class Transformador
 	public abstract Object transforma(Class<?> classe,File arquivo) throws InstantiationException, IllegalAccessException, FileNotFoundException;
 	
 	/**
-	 * @param classe - Classe para ser serializada para um arquivo.
+	 * @param objeto - Objeto para ser retransformado para arquivo
 	 * @return String contendo o objeto serializado
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException

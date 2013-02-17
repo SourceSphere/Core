@@ -8,7 +8,7 @@ import net.vidageek.mirror.dsl.Mirror;
 /**
  * Classe de utilidades para tratar os componentes de qualquer classe via reflection
  * @author Guilherme Dio
- * @autor Marco Noronha
+ * @author Marco Noronha
  * @since 1.0
  */
 public final class ReflectionUtil 
