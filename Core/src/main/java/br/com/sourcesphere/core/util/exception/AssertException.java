@@ -9,21 +9,32 @@
  * limitations under the License.
  */
 
-package br.com.sourcesphere.core.util;
+package br.com.sourcesphere.core.util.exception;
 
 /**
- * Interface para implementacao de estrategias com verificacoes no meio do codigo
+ * RuntimeException for assertion handling
  * @author Guilherme Dio
  *
- * @param <T>
  */
-public interface Estrategia<T> 
+public class AssertException extends RuntimeException 
 {
 	/**
-	 * Este metodo informa o parametro deve ser validado ou nao
-	 * @param t - parametro
-	 * @return True - Se o codigo deve continuar
-	 * <p>False - Se o codigo nao deve continuar
+	 * Generated SerialUID
 	 */
-	Boolean verifica(T t);
+	private static final long serialVersionUID = 8551600486557723651L;
+
+	public AssertException(String msg)
+	{
+		super(msg);
+	}
+
+	public AssertException(Throwable cause)
+	{
+		super(cause);
+	}
+	
+	public AssertException(String msg,Throwable cause)
+	{
+		super(msg, cause);
+	}
 }

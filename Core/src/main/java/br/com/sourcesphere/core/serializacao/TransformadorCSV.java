@@ -1,3 +1,14 @@
+/*
+ * @Copyright 2013 - ALL RIGHTS RESERVED TO SOURCEPHERE
+ *
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package br.com.sourcesphere.core.serializacao;
 
 import java.io.File;
@@ -81,6 +92,9 @@ public final class TransformadorCSV extends Transformador
 		return objetos;
 	}
 	
+	/**
+	 * Ainda não implememtado
+	 */
 	@Override
 	@Deprecated
 	public String retransforma(Object objeto) throws InstantiationException 
