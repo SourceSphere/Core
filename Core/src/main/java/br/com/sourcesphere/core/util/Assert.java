@@ -28,11 +28,6 @@ public class Assert
 	private static final Logger log = Logger.getLogger(Assert.class);
 	
 	/**
-	 * Default exception type
-	 */
-	private static final Class<IllegalArgumentException> defaultExceptionType = IllegalArgumentException.class;
-	
-	/**
 	 * The default base message
 	 */
 	private final String baseMsg = "[Assertion fail] - ";
@@ -68,7 +63,7 @@ public class Assert
 	 */
 	public Assert(Logger classLogger)
 	{
-		this(defaultExceptionType,classLogger);
+		this(IllegalArgumentException.class,classLogger);
 	}
 	
 	/**
@@ -80,7 +75,7 @@ public class Assert
 	 */
 	public Assert(Class<? extends RuntimeException> exceptionType)
 	{
-		this(defaultExceptionType,Assert.log);
+		this(exceptionType,Assert.log);
 	}
 	
 	/**
@@ -278,12 +273,12 @@ public class Assert
 	}
 	
 	/**
-	 * Log an message on the {@link Logger}
+	 * Logs a warn message using the {@link Logger}
 	 * @param msg
 	 */
 	protected void log(String msg)
 	{
-		classLogger.log(classLogger.getLevel(), msg);
+		classLogger.warn(msg);
 	}
 	
 	/**
